@@ -1,0 +1,49 @@
+<ion-content>
+  <div class="container">
+    <div class="panel">
+      <!-- 📌 Agregar el logo -->
+      <img src="/assets/images/pages/auth/login/logo_login.png" class="logo" alt="Logo">
+
+      <ion-list [formGroup]="form">
+        <label>Número de identificación:</label>
+        <ion-item>
+          <ion-input
+            placeholder="Ej. 1234567890"
+            formControlName="username"></ion-input>
+        </ion-item>
+        <label>Contraseña:</label>
+        <ion-item>
+          <ion-input
+            type="password"
+            placeholder="Ingrese su contraseña"
+            formControlName="password"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-button
+            (click)="login()">
+            Ingresar
+          </ion-button>
+        </ion-item>
+
+        @if (authService?.username) {
+          <ion-item>
+            <ion-button
+              (click)="verifyIdentity()">
+              Ingreso con Huella
+            </ion-button>
+          </ion-item>
+        }
+      </ion-list>
+
+      <ion-alert
+        [isOpen]="isAlertOpen"
+        header="Error de validación"
+        subHeader="Intente de nuevo!"
+        message="Usuario y Contraseña no válidos"
+        [buttons]="['Aceptar']"
+        (didDismiss)="isAlertOpen=false">
+      </ion-alert>
+    </div>
+  </div>
+</ion-content>

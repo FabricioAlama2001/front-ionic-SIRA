@@ -1,6 +1,7 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { TabsPage } from './tabs.page';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {TabsPage} from './tabs.page';
+import {TokenGuard} from "../guards";
 
 const routes: Routes = [
   {
@@ -9,7 +10,8 @@ const routes: Routes = [
     children: [
       {
         path: 'tab1',
-        loadChildren: () => import('../tab1/tab1.module').then(m => m.Tab1PageModule)
+        loadChildren: () => import('../tab1/tab1.module').then(m => m.Tab1PageModule),
+        canActivate: [TokenGuard]
       },
       {
         path: 'tab2',
@@ -36,4 +38,5 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forChild(routes)],
 })
-export class TabsPageRoutingModule {}
+export class TabsPageRoutingModule {
+}

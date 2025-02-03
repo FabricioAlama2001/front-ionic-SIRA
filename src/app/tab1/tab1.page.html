@@ -1,8 +1,9 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 1
+      Registro de Asistencia
     </ion-title>
+    <ion-button (click)="logOut()">Cerra Sesión</ion-button>
   </ion-toolbar>
 </ion-header>
 
@@ -13,5 +14,53 @@
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <!--Listar tipos de timbrada-->
+  <ion-list>
+    <ion-item>
+      <ion-select
+        [formControl]="typeControl"
+        (ionChange)="register()"
+        label="Registrar asistencia"
+        placeholder="Seleccione...">
+        @for (type of types; track type.id) {
+          <ion-select-option [disabled]="!type.enabled"
+                             [value]="type">{{ type.name }}
+          </ion-select-option>
+        }
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <!-- Tabla-->
+  <ion-list>
+    @for (attendance of attendances; track attendance.id) {
+      <ion-item>
+        <ion-label>{{ attendance.registeredAt |date: 'medium' }}</ion-label>
+        <ion-label>
+          @if (attendance.late) {
+            @if (attendance.type.code === 'entry') {
+              Tarde
+            }
+            @if (attendance.type.code === 'exit') {
+              Jornada Incompleta
+            }
+            @if (attendance.type.code === 'lunch_return') {
+              Almuerzo fuera del tiempo
+            }
+          } @else {
+            @if (attendance.type.code === 'entry') {
+              A tiempo
+            }
+            @if (attendance.type.code === 'exit') {
+              A tiempo
+            }
+            @if (attendance.type.code === 'lunch_exit') {
+              A tiempo
+            }
+          }
+        </ion-label>
+        <ion-label>{{ attendance.type.name }}</ion-label>
+      </ion-item>
+    }
+  </ion-list>
 </ion-content>
