@@ -8,6 +8,7 @@
 *.tmp.*
 UserInterfaceState.xcuserstate
 $RECYCLE.BIN/
+node_modules.zip
 
 *.log
 log.txt
@@ -68,3 +69,4 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+"node_modules.zip" 
