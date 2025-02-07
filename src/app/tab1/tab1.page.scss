@@ -1,0 +1,93 @@
+/* 📌 Fondo del contenido */
+ion-content {
+  --background: #f4f4f4; /* Color de fondo suave */
+  padding: 10px; /* Agrega algo de espacio dentro del contenido */
+}
+
+/* 📌 Estilo del toolbar (barra superior) */
+ion-toolbar {
+  color: black; /* Cambiar el color del texto a negro para mejor contraste */
+  display: flex;
+  justify-content: space-between; /* Alinea los elementos: logo, título y botón */
+  align-items: center; /* Asegura que todo esté alineado verticalmente */
+  padding-left: 15px; /* Aumenta el espacio izquierdo */
+  padding-right: 15px; /* Aumenta el espacio derecho */
+  height: 80px; /* Aumenta la altura para más espacio para el logo */
+  position: relative;
+  background: transparent; /* Elimina el fondo naranja */
+}
+
+/* 📌 Título centrado */
+ion-title {
+  font-weight: bold;
+  font-size: 20px;
+  color: black; /* Cambiar color del título a negro */
+  text-align: center; /* Centrar título */
+  flex-grow: 1; /* Hace que el título ocupe el espacio disponible */
+  margin-left: 20px; /* Ajuste para que no se solape con el logo */
+  z-index: 2; /* Asegura que el título esté encima de otros elementos */
+}
+
+/* 📌 Logo */
+.logo {
+  width: 60px; /* Ajusta el tamaño del logo */
+  height: auto; /* Mantiene la proporción original */
+  position: absolute;
+  left: 10px; /* Alinear el logo a la izquierda */
+  top: 50%; /* Centra el logo verticalmente */
+  transform: translateY(-50%); /* Alineación precisa del logo */
+  z-index: 1; /* Asegura que el logo se muestre por encima del fondo */
+}
+
+/* 📌 Estilo del botón de cerrar sesión */
+ion-button {
+  --color: white;
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 8px;
+  position: absolute;
+  right: 10px; /* Alinear a la derecha */
+  top: 10px; /* Ajuste al top para mejor disposición */
+}
+
+/* 📌 Estilo del formulario de asistencia */
+ion-item {
+  margin-bottom: 15px; /* Espacio entre los campos */
+  border-radius: 8px;
+   padding: 10px;
+}
+
+
+ion-select, ion-input {
+  font-size: 14px;
+  padding: 10px;
+}
+
+/* 📌 Tabla de registros de asistencia */
+ion-list {
+  margin-top: 20px;
+  background: white;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 📌 Estilos de las celdas de la tabla */
+ion-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+ion-label {
+  font-size: 14px;
+}
+
+/* 📌 Diseño para los botones en la lista */
+ion-button {
+  font-size: 14px;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
