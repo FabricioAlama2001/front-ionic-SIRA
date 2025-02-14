@@ -1,0 +1,103 @@
+/* 📌 Estilo del toolbar (barra superior) */
+ion-toolbar {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/* 📌 Título del toolbar */
+ion-title {
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* 📌 Estilo de los datetime */
+ion-datetime {
+  margin: 5px 5px;
+  --background: white;
+  --border-radius: 8px;
+  --padding-start: 10px;
+  --padding-end: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 45%;
+  display: inline-block;
+  font-size: 14px;
+}
+
+/* 📌 Título para el rango de fechas */
+.date-range-label {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* 📌 Estilo de los botones */
+ion-button {
+  --color: white;
+  font-size: 16px;
+  padding: 10px 20px;
+  margin-top: 15px;
+  border-radius: 8px;
+  text-align: center;
+  display: block;
+  width: 100%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 📌 Estilo de la lista */
+ion-list {
+  background: white;
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 📌 Encabezado de la tabla */
+ion-item.header {
+  background-color: #f1f1f1;
+  font-weight: bold;
+  padding: 10px;
+  text-align: center;
+}
+
+/* 📌 Estilo de los items de la tabla */
+ion-item {
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+  border-radius: 8px;
+  text-align: center;
+}
+
+/* 📌 Estilo de las etiquetas dentro de los items */
+ion-label {
+  font-size: 14px;
+  color: #333;
+  font-weight: normal;
+}
+
+/* 📌 Resaltar la asistencia "tarde" en rojo */
+ion-label.late {
+  color: red;
+  font-weight: bold;
+}
+
+/* 📌 Resaltar la asistencia "a tiempo" en verde */
+ion-label.on-time {
+  color: green;
+  font-weight: bold;
+}
+
+/* 📌 Ajustes de márgenes y espaciados generales */
+ion-header, ion-content {
+  padding: 16px;
+}
+
+/* 📌 Footer */
+ion-footer {
+  padding: 10px;
+  text-align: center;
+  font-size: 14px;
+}
