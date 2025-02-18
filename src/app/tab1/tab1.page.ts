@@ -15,7 +15,7 @@ export class Tab1Page implements OnInit {
 
   protected types: CatalogueModel[] = [];
   protected attendances: AttendanceModel[] = []
-  private readonly authService = inject(AuthService);
+  protected readonly authService = inject(AuthService);
   private readonly authHttpService = inject(AuthHttpService);
   private readonly attendanceHttpService = inject(AttendanceHttpService);
   private readonly cataloguesHttpService = inject(CataloguesHttpService);
@@ -42,43 +42,30 @@ export class Tab1Page implements OnInit {
 
   findTypes() {
     this.cataloguesHttpService.findCataloguesByTypes('ATTENDANCE_TYPE').subscribe(response => {
-      switch (this.attendances.length) {
-        case 0:
-          response[0].enabled = true;
-          response[1].enabled = false;
-          response[2].enabled = false;
-          response[3].enabled = false;
-          break;
+      this.attendances.forEach(attendance => {
+        let type = null;
+        switch (attendance.type.code) {
+          case 'entry':
+            type = response.find(type=>type.code=='entry')
+          if (type) type.enabled = false;
+            break;
 
-        case 1:
-          response[0].enabled = false;
-          response[1].enabled = true;
-          response[2].enabled = false;
-          response[3].enabled = false;
-          break;
+          case 'lunch_exit':
+            type = response.find(type=>type.code=='lunch_exit')
+            if (type) type.enabled = false;
+            break;
 
-        case 2:
-          response[0].enabled = false;
-          response[1].enabled = false;
-          response[2].enabled = true;
-          response[3].enabled = false;
-          break;
+          case 'lunch_return':
+            type = response.find(type=>type.code=='lunch_return')
+            if (type) type.enabled = false;
+            break;
 
-        case 3:
-          response[0].enabled = false;
-          response[1].enabled = false;
-          response[2].enabled = false;
-          response[3].enabled = true;
-          break;
-
-        case 4:
-          response[0].enabled = false;
-          response[1].enabled = false;
-          response[2].enabled = false;
-          response[3].enabled = false;
-          break;
-      }
-
+          case 'exit':
+            type = response.find(type=>type.code=='exit')
+            if (type) type.enabled = false;
+            break;
+       }
+      })
       this.types = response;
     });
   }

@@ -37,6 +37,4 @@ export class AttendanceHttpService {
       map(response => response.data)
     );
   }
-
-
 }

@@ -16,7 +16,7 @@ import {arrayUnion} from "@angular/fire/firestore";
   ],
   standalone: true
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   private readonly formBuilder = inject(FormBuilder);
   private readonly authHttpService = inject(AuthHttpService);
   protected readonly authService = inject(AuthService);
@@ -29,9 +29,6 @@ export class LoginComponent implements OnInit {
     this.buildForm();
   }
 
-  ngOnInit() {
-  }
-
   buildForm() {
     this.form = this.formBuilder.group({
       username: [null, Validators.required],
@@ -42,6 +39,12 @@ export class LoginComponent implements OnInit {
   login() {
     this.authHttpService.login(this.form.value).subscribe(response => {
       this.form.reset();
+
+      if(!response.passwordChanged){
+        this.router.navigateByUrl('/password-change');
+        return;
+      }
+
       this.router.navigateByUrl('/tabs/tab1');
     }, error => {
       this.isAlertOpen = true;
@@ -75,5 +78,9 @@ export class LoginComponent implements OnInit {
       console.error(e);
       alert('Authentication failed');
     });
+  }
+
+  goToPasswordReset() {
+    this.router.navigate(['/password-reset']);
   }
 }

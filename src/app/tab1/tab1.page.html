@@ -1,13 +1,15 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Registro de Asistencia
+      Registro de Asistencia - {{ authService?.auth?.name }} {{ authService?.auth?.lastname }}
     </ion-title>
     <img src="/assets/images/pages/auth/login/logo_login.png" class="logo" alt="Logo">
 
     <ion-button (click)="logOut()">Cerra Sesión</ion-button>
   </ion-toolbar>
 </ion-header>
+
+<app-password-change>Cambiar Contraseña</app-password-change>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">

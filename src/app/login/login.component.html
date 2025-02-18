@@ -13,11 +13,11 @@
         </ion-item>
         <label>Contraseña:</label>
         <ion-item>
-          <ion-input
-            type="password"
-            placeholder="Ingrese su contraseña"
-            formControlName="password"></ion-input>
+          <ion-input type="password"  formControlName = "password">
+            <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+          </ion-input>
         </ion-item>
+
 
         <ion-item>
           <ion-button
@@ -36,6 +36,13 @@
         }
       </ion-list>
 
+
+      <!-- 📌 Botón para recuperar contraseña -->
+      <ion-item>
+        <ion-button (click)="goToPasswordReset()" color="light">
+          ¿Olvidaste tu contraseña?
+        </ion-button>
+      </ion-item>
       <ion-alert
         [isOpen]="isAlertOpen"
         header="Error de validación"
