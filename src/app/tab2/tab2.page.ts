@@ -11,7 +11,7 @@ import {FormControl} from "@angular/forms";
   styleUrls: ['tab2.page.scss'],
   standalone: false,
 })
-export class Tab2Page implements OnInit {
+export class Tab2Page {
 
   protected types: CatalogueModel[] = [];
   protected attendances: AttendanceModel[] = []
@@ -23,8 +23,6 @@ export class Tab2Page implements OnInit {
   constructor() {
   }
 
-  ngOnInit() {
-  }
 
   findAttendancesByEmployee() {
     this.attendanceHttpService.findAttendancesByEmployee(
