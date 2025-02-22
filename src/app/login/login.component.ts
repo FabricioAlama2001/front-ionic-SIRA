@@ -5,6 +5,7 @@ import {IonicModule} from "@ionic/angular";
 import {Router} from "@angular/router";
 import {NativeBiometric} from 'capacitor-native-biometric';
 import {arrayUnion} from "@angular/fire/firestore";
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'app-login',
@@ -83,4 +84,6 @@ export class LoginComponent {
   goToPasswordReset() {
     this.router.navigate(['/password-reset']);
   }
+
+  protected readonly environment = environment;
 }

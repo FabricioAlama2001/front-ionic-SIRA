@@ -22,7 +22,7 @@ export class Tab1Page implements OnInit {
   protected typeControl = new FormControl();
   protected startedAtControl = new FormControl(new Date());
   protected endedAtControl = new FormControl(new Date());
-
+  isLoading = false;
   constructor() {
   }
 
@@ -32,11 +32,43 @@ export class Tab1Page implements OnInit {
   }
 
   register() {
-    this.attendanceHttpService.register(this.authService.auth.employee.id, this.typeControl.value).subscribe(
+
+    if (this.typeControl.value?.code == 'lunch_return') {
+      const existLunchExit = this.attendances.some(attendance => attendance.type.code == 'lunch_exit');
+
+      if (!existLunchExit) {
+        alert('No ha registrado la salida del almuerzo');
+        return;
+      }
+    }
+
+
+    if (this.typeControl.value?.code == 'exit') {
+      const existEntry = this.attendances.some(attendance => attendance.type.code == 'entry');
+
+      if (this.attendances.some(attendance => attendance.type.code == 'lunch_exit')) {
+        const existLunchReturn = this.attendances.some(attendance => attendance.type.code == 'lunch_return');
+
+        if (!existLunchReturn) {
+          alert('No ha registrado el regreso del almuerzo');
+          return;
+        }
+      }
+
+      if (!existEntry) {
+        alert('No ha registrado la entrada');
+        return;
+      }
+    }
+    this.isLoading = true;
+    this.attendanceHttpService.register(this.authService.auth.employee.id, this.typeControl.value)
+      .subscribe(
       () => {
         this.typeControl.reset();
         this.findAttendancesByEmployee();
-      }
+        this.isLoading = false;
+      },error => this.isLoading = false
+
     );
   }
 
@@ -44,41 +76,46 @@ export class Tab1Page implements OnInit {
     this.cataloguesHttpService.findCataloguesByTypes('ATTENDANCE_TYPE').subscribe(response => {
       this.attendances.forEach(attendance => {
         let type = null;
+
         switch (attendance.type.code) {
           case 'entry':
-            type = response.find(type=>type.code=='entry')
-          if (type) type.enabled = false;
+            type = response.find(type => type.code == 'entry')
+            if (type) type.enabled = false;
             break;
 
           case 'lunch_exit':
-            type = response.find(type=>type.code=='lunch_exit')
+            type = response.find(type => type.code == 'lunch_exit')
             if (type) type.enabled = false;
             break;
 
           case 'lunch_return':
-            type = response.find(type=>type.code=='lunch_return')
+            type = response.find(type => type.code == 'lunch_return')
             if (type) type.enabled = false;
             break;
 
           case 'exit':
-            type = response.find(type=>type.code=='exit')
+            type = response.find(type => type.code == 'exit')
             if (type) type.enabled = false;
             break;
-       }
-      })
+        }
+      });
+
       this.types = response;
     });
   }
 
   findAttendancesByEmployee() {
+    this.isLoading = true;
     this.attendanceHttpService.findAttendancesByEmployee(
       this.authService.auth.employee.id,
       this.startedAtControl.value!,
-      this.endedAtControl.value!).subscribe(response => {
+      this.endedAtControl.value!)
+      .subscribe(response => {
       this.attendances = response;
-
+      this.isLoading = false;
       this.findTypes();
-    })
+    },error => this.isLoading = false
+    )
   }
 
   logOut() {

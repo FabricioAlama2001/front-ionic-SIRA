@@ -18,6 +18,14 @@
     </ion-toolbar>
   </ion-header>
 
+
+  <ion-spinner
+    name="lines-small"
+    [style.display]="isLoading ? 'block' : 'none'">
+  </ion-spinner>
+
+
+
   <!--Listar tipos de timbrada-->
   <ion-list>
     <ion-item>
@@ -69,4 +77,3 @@
     }
   </ion-list>
 </ion-content>
-

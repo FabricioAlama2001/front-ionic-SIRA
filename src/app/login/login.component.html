@@ -4,6 +4,8 @@
       <!-- 📌 Agregar el logo -->
       <img src="/assets/images/pages/auth/login/logo_login.png" class="logo" alt="Logo">
 
+      {{ environment.APP_NAME }}
+
       <ion-list [formGroup]="form">
         <label>Número de identificación:</label>
         <ion-item>
@@ -13,7 +15,7 @@
         </ion-item>
         <label>Contraseña:</label>
         <ion-item>
-          <ion-input type="password"  formControlName = "password">
+          <ion-input type="password" formControlName="password">
             <ion-input-password-toggle slot="end"></ion-input-password-toggle>
           </ion-input>
         </ion-item>
