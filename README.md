@@ -10,4 +10,12 @@
 # Optional
 - `ionic build`
 - `npx cap sync android`
-- `npx cap run android` 
+- `npx cap run android`
+
+npx cap open android
+
+npx capacitor-assets generate
+
+npm install @capacitor/assets
+
+
