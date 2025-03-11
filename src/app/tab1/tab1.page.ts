@@ -23,6 +23,7 @@ export class Tab1Page implements OnInit {
   protected startedAtControl = new FormControl(new Date());
   protected endedAtControl = new FormControl(new Date());
   isLoading = false;
+
   constructor() {
   }
 
@@ -32,6 +33,14 @@ export class Tab1Page implements OnInit {
   }
 
   register() {
+    if (this.typeControl.value?.code == 'lunch_exit') {
+      const entry = this.attendances.some(attendance => attendance.type.code == 'entry');
+
+      if (!entry) {
+        alert('No ha registrado la entrada');
+        return;
+      }
+    }
 
     if (this.typeControl.value?.code == 'lunch_return') {
       const existLunchExit = this.attendances.some(attendance => attendance.type.code == 'lunch_exit');
@@ -41,7 +50,6 @@ export class Tab1Page implements OnInit {
         return;
       }
     }
-
 
     if (this.typeControl.value?.code == 'exit') {
       const existEntry = this.attendances.some(attendance => attendance.type.code == 'entry');
@@ -60,7 +68,9 @@ export class Tab1Page implements OnInit {
         return;
       }
     }
+
     this.isLoading = true;
+
     this.attendanceHttpService.register(this.authService.auth.employee.id, this.typeControl.value)
       .subscribe(
       () => {
