@@ -13,13 +13,13 @@ import {AuthHttpService, AuthService} from "../services/auth";
 })
 export class Tab1Page implements OnInit {
 
-  protected types: CatalogueModel[] = [];
+  types: CatalogueModel[] = [];
   protected attendances: AttendanceModel[] = []
   protected readonly authService = inject(AuthService);
   private readonly authHttpService = inject(AuthHttpService);
   private readonly attendanceHttpService = inject(AttendanceHttpService);
   private readonly cataloguesHttpService = inject(CataloguesHttpService);
-  protected typeControl = new FormControl();
+  typeControl = new FormControl();
   protected startedAtControl = new FormControl(new Date());
   protected endedAtControl = new FormControl(new Date());
   isLoading = false;
@@ -81,6 +81,15 @@ export class Tab1Page implements OnInit {
 
     );
   }
+
+
+  getUserInitials(): string {
+    if (this.authService.auth && this.authService.auth.name && this.authService.auth.lastname) {
+      return this.authService.auth.name.charAt(0).toUpperCase() + this.authService.auth.lastname.charAt(0).toUpperCase();
+    }
+    return '??'; // Si no hay datos, muestra "??"
+  }
+
 
   findTypes() {
     this.cataloguesHttpService.findCataloguesByTypes('ATTENDANCE_TYPE').subscribe(response => {

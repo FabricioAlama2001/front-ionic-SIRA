@@ -1,13 +1,42 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Registro de Asistencia - {{ authService?.auth?.name }} {{ authService?.auth?.lastname }}
-    </ion-title>
-    <img src="/assets/images/pages/auth/login/logo_login.png" class="logo" alt="Logo">
+    <ion-grid>
+      <ion-row class="ion-align-items-center">
+        <!-- 🏷️ Logo de la aplicación en el header -->
+        <ion-col size="2" class="logo-container">
 
-    <ion-button (click)="logOut()">Cerra Sesión</ion-button>
+        </ion-col>
+
+        <!-- 🏷️ Título centrado en todas las resoluciones -->
+        <ion-col size="12" class="title-container">
+          <img src="assets/images/pages/auth/login/logo_login.png" alt="Logo" class="logo">
+          <span class="titulo">Registro de Asistencia</span>
+        </ion-col>
+
+        <!-- 🏷️ Avatar -->
+        <ion-col size="2" class="avatar-container">
+          <div class="avatar">{{ getUserInitials() }}</div>
+        </ion-col>
+
+        <!-- 🏷️ Datos del usuario alineados con el avatar -->
+        <ion-col size="8" class="user-info-container">
+          <div class="user-details">
+            <span class="user-name">{{ authService?.auth?.name }} {{ authService?.auth?.lastname }}</span>
+            <span class="user-email">{{ authService?.auth?.email }}</span>
+          </div>
+        </ion-col>
+
+        <!-- 🏷️ Botón "Cerrar Sesión" -->
+        <ion-col size="2" class="button-container">
+          <ion-button (click)="logOut()" fill="clear" color="danger">
+            <ion-icon name="power" size="large"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-toolbar>
 </ion-header>
+
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
@@ -15,12 +44,6 @@
       <ion-title size="large">Tab 1</ion-title>
     </ion-toolbar>
   </ion-header>
-
-
-  <ion-spinner
-    name="lines-small"
-    [style.display]="isLoading ? 'block' : 'none'">
-  </ion-spinner>
 
 
 
@@ -74,4 +97,10 @@
       </ion-item>
     }
   </ion-list>
+
+  <div class="spinner-container">
+    <ion-spinner name="lines-small" [style.display]="isLoading ? 'block' : 'none'"></ion-spinner>
+
+  </div>
+
 </ion-content>

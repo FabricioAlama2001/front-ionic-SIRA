@@ -101,3 +101,60 @@ ion-footer {
   text-align: center;
   font-size: 14px;
 }
+
+
+/* 📌 Contenedor para que los calendarios se mantengan alineados */
+.date-picker-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 700px; /* Ajuste para pantallas grandes */
+  margin: 0 auto; /* Centrar el contenedor */
+  gap: 10px; /* Espacio entre los dos calendarios */
+}
+
+/* 📌 Estilo del ion-datetime */
+ion-datetime {
+  flex: 1; /* Distribuir el espacio entre ambos */
+  min-width: 48%; /* Ocupar el 48% del ancho disponible */
+  max-width: 320px; /* Evitar que sean demasiado grandes */
+  height: 80px; /* Ajustar la altura */
+  --background: white;
+  --border-radius: 8px;
+  --padding-start: 10px;
+  --padding-end: 10px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  font-size: 18px;
+  text-align: center;
+}
+
+/* 📌 Asegurar que los selectores de mes y año sean legibles */
+ion-datetime::part(calendar),
+ion-datetime::part(year),
+ion-datetime::part(title) {
+  font-size: 22px !important; /* Hacer el texto más grande */
+  font-weight: bold;
+}
+
+/* 📌 Evitar que los meses y años se corten */
+ion-datetime::part(wheel-item) {
+  min-width: 100px !important; /* Asegurar suficiente espacio */
+  text-align: center;
+  font-size: 20px;
+}
+
+/* 📌 Ajuste para móviles */
+@media (max-width: 480px) {
+  .date-picker-container {
+    flex-direction: column; /* Poner los calendarios uno debajo del otro en móviles */
+    gap: 5px;
+  }
+
+  ion-datetime {
+    width: 100%; /* Ocupar todo el ancho disponible */
+    max-width: 100%;
+    height: 90px;
+    font-size: 20px;
+  }
+}
+

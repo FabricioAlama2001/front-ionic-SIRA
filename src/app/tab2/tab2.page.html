@@ -8,9 +8,13 @@
 
 <ion-content [fullscreen]="true">
 
-  <ion-datetime presentation="date" [formControl]="startedAtControl"></ion-datetime>
-  <ion-datetime presentation="date" [formControl]="endedAtControl"></ion-datetime>
-
+  <!-- Contenedor para alinear correctamente los calendarios -->
+  <div class="date-picker-container">
+    <b>Fecha de inicio:</b>
+    <ion-datetime presentation="date" [formControl]="startedAtControl"></ion-datetime>
+    <b>Fecha de finalización:</b>
+    <ion-datetime presentation="date" [formControl]="endedAtControl"></ion-datetime>
+  </div>
   <ion-button
     (click)="findAttendancesByEmployee()">
     Buscar
