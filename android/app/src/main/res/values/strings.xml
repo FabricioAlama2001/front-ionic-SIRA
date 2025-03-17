@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">front-ionic</string>
+    <string name="app_name">SirA</string>
     <string name="title_activity_main">front-ionic</string>
     <string name="package_name">com.yavirac.attendance</string>
     <string name="custom_url_scheme">com.yavirac.attendance</string>

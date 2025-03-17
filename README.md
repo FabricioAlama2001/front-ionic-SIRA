@@ -5,6 +5,9 @@
 # Prod
 - `ionic build`
 - `npx cap sync android`
+- `npx cap open android`
+
+# Dev
 - `ionic cap run android -l --external`
 
 # Optional
